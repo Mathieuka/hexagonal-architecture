@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import { postService } from "@domain/services/Post.services";
 // import { postRepository } from "@infrastructure/repositories/postRepository";
