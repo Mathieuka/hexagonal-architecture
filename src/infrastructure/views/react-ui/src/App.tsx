@@ -1,12 +1,13 @@
 import React from "react";
 import logo from "./logo.svg";
-// import { postService } from "@domain/services/Post.services";
+import { postService } from "@domain/services/Post.services";
 // import { postRepository } from "@infrastructure/repositories/postRepository";
 // import { httpAxios } from "@infrastructure/instances/httpAxios";
 import Button from "@components/Button";
 import "./App.css";
 
 function App() {
+  console.log("postService", postService);
   return (
     <div className="App">
       <header className="App-header">
