@@ -6,12 +6,12 @@ import Button from "@components/Button";
 import "./App.css";
 
 function App() {
-  const fun = async () => {
+  const fetchPost = async () => {
     console.log("posts", await postService(postRepository()).getPosts());
   };
 
   useEffect(() => {
-    fun();
+    fetchPost();
   }, []);
 
   return (
