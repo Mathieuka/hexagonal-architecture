@@ -7,4 +7,5 @@ module.exports = {
     "^@infrastructure/(.*)$": "infrastructure/$1",
   },
   moduleDirectories: ["<rootDir>", "node_modules"],
+  setupFilesAfterEnv: ["./setup-jest.ts"],
 };

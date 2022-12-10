@@ -3,10 +3,7 @@ import { postRepository } from "@infrastructure/repositories/postRepository";
 
 describe("Post service", () => {
   test("Dummy", async () => {
-    const result = await postService(postRepository()).getPosts();
-
-    console.log("result", result);
-
-    // expect(result).toEqual(1);
+    const posts = await postService(postRepository()).getPosts();
+    expect(posts.length).toEqual(6);
   });
 });
