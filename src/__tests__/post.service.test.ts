@@ -7,15 +7,26 @@ describe("Post service", () => {
     expect(posts.length).toEqual(6);
   });
 
-  test("Add posts", async () => {
+  test("Add post", async () => {
+    const response = await postService(postRepository()).getPosts();
     const newPost = {
-      id: 1,
       userId: 3,
+      id: response.length,
       title: "Craft",
-      body: "Hexagonal architecure",
+      body: "Hexagonal architecture",
     };
-    const posts = postService(postRepository()).addPost(newPost, []);
+    const posts = postService(postRepository()).addPost(newPost, response);
+
     expect(posts[0]).toEqual(newPost);
-    expect(posts.length).toEqual(1);
+    expect(posts.length).toEqual(7);
+  });
+
+  test("Remove post", async () => {
+    const response = await postService(postRepository()).getPosts();
+    const postId = 1;
+
+    expect(response.find((post) => post.id === postId)).toBeTruthy();
+    const posts = postService(postRepository()).removePost(postId, response);
+    expect(posts.find((post) => post.id === postId)).toEqual(undefined);
   });
 });

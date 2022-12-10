@@ -1,9 +1,9 @@
 import { PostRepository } from "../repositories/Post";
-import { Post } from "@domain/models/Post";
 
 export const postService = (repository: PostRepository): PostRepository => ({
   getPosts: () => repository.getPosts(),
-  addPost: (newPost: Post, posts: Post[]) => {
+  addPost: (newPost, posts) => {
     return repository.addPost(newPost, posts);
   },
+  removePost: (id, posts) => repository.removePost(id, posts),
 });

@@ -11,4 +11,5 @@ export const postRepository = () =>
       );
     },
     addPost: (newPost, posts) => [newPost, ...posts],
+    removePost: (id, posts) => posts.filter((post) => post.id !== id),
   }))(httpAxios);
