@@ -1,7 +1,7 @@
-import { Http } from "../../domain/repositories/Http";
-import { PostRepository } from "../../domain/repositories/Post";
-import { PostDTO } from "../http/dto/postDTO";
-import { httpAxios } from "../instances/httpAxios";
+import { Http } from "@domain/repositories/Http";
+import { PostRepository } from "@domain/repositories/Post";
+import { PostDTO } from "@infrastructure/http/dto/postDTO";
+import { httpAxios } from "@infrastructure/instances/httpAxios";
 
 export const postRepository = () =>
   ((client: Http): PostRepository => ({
@@ -10,4 +10,5 @@ export const postRepository = () =>
         "https://jsonplaceholder.typicode.com/posts"
       );
     },
+    addPost: (newPost, posts) => [newPost, ...posts],
   }))(httpAxios);
