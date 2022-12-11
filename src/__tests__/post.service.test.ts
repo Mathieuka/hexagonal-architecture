@@ -38,6 +38,7 @@ describe("Post service", () => {
     expect(post?.title).toEqual(
       "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
     );
+
     const newPosts = postService(postRepository()).updatePost(
       postId,
       { title: "hexagonal" },
@@ -45,16 +46,6 @@ describe("Post service", () => {
     );
 
     const postUpdated = newPosts.find((post) => post.id === postId);
-
-    expect(postUpdated).toEqual({
-      id: 1,
-      userId: 1,
-      title: "hexagonal",
-      body:
-        "quia et suscipit\n" +
-        "suscipit recusandae consequuntur expedita et cum\n" +
-        "reprehenderit molestiae ut ut quas totam\n" +
-        "nostrum rerum est autem sunt rem eveniet architecto",
-    });
+    expect(postUpdated?.title).toEqual("hexagonal");
   });
 });

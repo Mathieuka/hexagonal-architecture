@@ -12,13 +12,13 @@ export const postRepository = () =>
     },
     createPost: (newPost, posts) => [newPost, ...posts],
     deletePost: (id, posts) => posts.filter((post) => post.id !== id),
-    updatePost: (id, newPost, posts) => {
+    updatePost: (id, params, posts) => {
       const index = posts.findIndex((post) => (post.id = id));
 
       if (index >= 0) {
         posts[index] = {
           ...posts[index],
-          ...newPost,
+          ...params,
         };
       }
 
