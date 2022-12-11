@@ -10,7 +10,7 @@ export const postRepository = () =>
         "https://jsonplaceholder.typicode.com/posts"
       );
     },
-    addPost: (newPost, posts) => [newPost, ...posts],
+    createPost: (newPost, posts) => [newPost, ...posts],
     removePost: (id, posts) => posts.filter((post) => post.id !== id),
     updatePost: (id, newPost, posts) => {
       const index = posts.findIndex((post) => (post.id = id));

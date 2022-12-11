@@ -15,7 +15,7 @@ describe("Post service", () => {
       title: "Craft",
       body: "Hexagonal architecture",
     };
-    const newPosts = postService(postRepository()).addPost(newPost, posts);
+    const newPosts = postService(postRepository()).createPost(newPost, posts);
 
     expect(newPosts[0]).toEqual(newPost);
     expect(newPosts.length).toEqual(7);
