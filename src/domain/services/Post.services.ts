@@ -5,6 +5,6 @@ export const postService = (repository: PostRepository): PostRepository => ({
   createPost: (newPost, posts) => {
     return repository.createPost(newPost, posts);
   },
-  removePost: (id, posts) => repository.removePost(id, posts),
+  deletePost: (id, posts) => repository.deletePost(id, posts),
   updatePost: (id, newPost, posts) => repository.updatePost(id, newPost, posts),
 });

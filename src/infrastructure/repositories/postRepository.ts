@@ -11,7 +11,7 @@ export const postRepository = () =>
       );
     },
     createPost: (newPost, posts) => [newPost, ...posts],
-    removePost: (id, posts) => posts.filter((post) => post.id !== id),
+    deletePost: (id, posts) => posts.filter((post) => post.id !== id),
     updatePost: (id, newPost, posts) => {
       const index = posts.findIndex((post) => (post.id = id));
 

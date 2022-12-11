@@ -26,7 +26,7 @@ describe("Post service", () => {
     const postId = 1;
 
     expect(posts.find((post) => post.id === postId)).toBeTruthy();
-    const newPosts = postService(postRepository()).removePost(postId, posts);
+    const newPosts = postService(postRepository()).deletePost(postId, posts);
     expect(newPosts.find((post) => post.id === postId)).toEqual(undefined);
   });
 
