@@ -12,4 +12,16 @@ export const postRepository = () =>
     },
     addPost: (newPost, posts) => [newPost, ...posts],
     removePost: (id, posts) => posts.filter((post) => post.id !== id),
+    updatePost: (id, newPost, posts) => {
+      const index = posts.findIndex((post) => (post.id = id));
+
+      if (index >= 0) {
+        posts[index] = {
+          ...posts[index],
+          ...newPost,
+        };
+      }
+
+      return posts;
+    },
   }))(httpAxios);

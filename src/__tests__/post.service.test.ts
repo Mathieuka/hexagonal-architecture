@@ -8,25 +8,53 @@ describe("Post service", () => {
   });
 
   test("Add post", async () => {
-    const response = await postService(postRepository()).getPosts();
+    const posts = await postService(postRepository()).getPosts();
     const newPost = {
       userId: 3,
-      id: response.length,
+      id: posts.length,
       title: "Craft",
       body: "Hexagonal architecture",
     };
-    const posts = postService(postRepository()).addPost(newPost, response);
+    const newPosts = postService(postRepository()).addPost(newPost, posts);
 
-    expect(posts[0]).toEqual(newPost);
-    expect(posts.length).toEqual(7);
+    expect(newPosts[0]).toEqual(newPost);
+    expect(newPosts.length).toEqual(7);
   });
 
   test("Remove post", async () => {
-    const response = await postService(postRepository()).getPosts();
+    const posts = await postService(postRepository()).getPosts();
     const postId = 1;
 
-    expect(response.find((post) => post.id === postId)).toBeTruthy();
-    const posts = postService(postRepository()).removePost(postId, response);
-    expect(posts.find((post) => post.id === postId)).toEqual(undefined);
+    expect(posts.find((post) => post.id === postId)).toBeTruthy();
+    const newPosts = postService(postRepository()).removePost(postId, posts);
+    expect(newPosts.find((post) => post.id === postId)).toEqual(undefined);
+  });
+
+  test("Update post", async () => {
+    const posts = await postService(postRepository()).getPosts();
+    const postId = 1;
+    const post = posts.find((post) => post.id === postId);
+
+    expect(post?.title).toEqual(
+      "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+    );
+    const newPosts = postService(postRepository()).updatePost(
+      postId,
+      { title: "hexagonal" },
+      posts
+    );
+
+    const postUpdated = newPosts.find((post) => post.id === postId);
+
+    expect(postUpdated).toEqual({
+      id: 1,
+      userId: 1,
+      title: "hexagonal",
+      body:
+        "quia et suscipit\n" +
+        "suscipit recusandae consequuntur expedita et cum\n" +
+        "reprehenderit molestiae ut ut quas totam\n" +
+        "nostrum rerum est autem sunt rem eveniet architecto",
+    });
   });
 });
