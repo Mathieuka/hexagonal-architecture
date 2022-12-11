@@ -5,6 +5,11 @@ import { postRepository } from "@infrastructure/repositories/postRepository";
 import Button from "@components/Button";
 import "./App.css";
 
+if (process.env.NODE_ENV === "development") {
+  const { worker } = require("@msw/browser");
+  worker.start();
+}
+
 function App() {
   const fetchPost = async () => {
     console.log("posts", await postService(postRepository()).getPosts());
