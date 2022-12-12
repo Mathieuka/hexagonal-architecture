@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import logo from "./logo.svg";
+import React, { useEffect, useState } from "react";
 import { postService } from "@domain/services/Post.services";
 import { postRepository } from "@infrastructure/repositories/postRepository";
-import Button from "@components/Button";
 import "./App.css";
+import { Post } from "@domain/models/Post";
+import { PostForm } from "@infrastructure/views/react-ui/src/PostForm";
 
 if (process.env.NODE_ENV === "development") {
   const { worker } = require("@msw/browser");
@@ -11,8 +11,11 @@ if (process.env.NODE_ENV === "development") {
 }
 
 function App() {
+  const [posts, setPost] = useState<Post[]>([]);
+
   const fetchPost = async () => {
-    console.log("posts", await postService(postRepository()).getPosts());
+    const posts = await postService(postRepository()).getPosts();
+    setPost(() => posts);
   };
 
   useEffect(() => {
@@ -21,21 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Button />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PostForm posts={posts} />
     </div>
   );
 }
