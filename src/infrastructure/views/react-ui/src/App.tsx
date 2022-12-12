@@ -23,13 +23,22 @@ function App() {
     setPost(() => newPosts);
   };
 
+  const createPost = (post: { title: string; body: string }) => {
+    const newPosts = postService(postRepository()).createPost(post, posts);
+    setPost(() => newPosts);
+  };
+
   useEffect(() => {
     fetchPost();
   }, []);
 
   return (
     <div className="App">
-      <PostForm posts={posts} onDeletePost={deletePost} />
+      <PostForm
+        posts={posts}
+        onDeletePost={deletePost}
+        onCreatePost={createPost}
+      />
     </div>
   );
 }
