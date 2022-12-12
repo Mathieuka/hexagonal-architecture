@@ -22,6 +22,15 @@ const Posts = ({ posts }: { posts: Post[] }) => {
       {posts?.map((post) => {
         return (
           <div className="card">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                margin: "5px",
+              }}
+            >
+              <button>X</button>
+            </div>
             <p>ID: {post.id}</p>
             <p>Title: {post.title}</p>
             <p>Content: {post.body}</p>
