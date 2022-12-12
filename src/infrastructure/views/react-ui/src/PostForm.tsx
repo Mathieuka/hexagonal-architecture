@@ -2,7 +2,13 @@ import { Post } from "@domain/models/Post";
 import { Form } from "@components/Form";
 import React from "react";
 
-export const PostForm = ({ posts }: { posts: Post[] }) => {
+export const PostForm = ({
+  posts,
+  onDeletePost,
+}: {
+  posts: Post[];
+  onDeletePost: (id: number) => void;
+}) => {
   return (
     <>
       <Form>
@@ -11,12 +17,18 @@ export const PostForm = ({ posts }: { posts: Post[] }) => {
           <input type="text" placeholder="Enter the content" />
         </div>
       </Form>
-      <Posts posts={posts} />
+      <Posts posts={posts} onDeletePost={onDeletePost} />
     </>
   );
 };
 
-const Posts = ({ posts }: { posts: Post[] }) => {
+const Posts = ({
+  posts,
+  onDeletePost,
+}: {
+  posts: Post[];
+  onDeletePost: (id: number) => void;
+}) => {
   return (
     <>
       {posts?.map((post) => {
@@ -29,7 +41,7 @@ const Posts = ({ posts }: { posts: Post[] }) => {
                 margin: "5px",
               }}
             >
-              <button>X</button>
+              <button onClick={() => onDeletePost(post.id)}>X</button>
             </div>
             <p>ID: {post.id}</p>
             <p>Title: {post.title}</p>

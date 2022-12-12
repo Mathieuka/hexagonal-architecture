@@ -18,13 +18,18 @@ function App() {
     setPost(() => posts);
   };
 
+  const deletePost = (id: number) => {
+    const newPosts = postService(postRepository()).deletePost(id, posts);
+    setPost(() => newPosts);
+  };
+
   useEffect(() => {
     fetchPost();
   }, []);
 
   return (
     <div className="App">
-      <PostForm posts={posts} />
+      <PostForm posts={posts} onDeletePost={deletePost} />
     </div>
   );
 }
